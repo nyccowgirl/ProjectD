@@ -28,9 +28,9 @@ public class BinarySearchTreeWithDups<T extends Comparable<? super T>> extends B
 		// Assertion: rootNode != null
 		BinaryNode<T> current = getRootNode();
 		T result = null;
-		boolean found = false;
+		boolean add = false;
 
-		while (!found) {
+		while (!add) {
 			result = current.getData();
 			int comparison = newEntry.compareTo(result);
 
@@ -39,7 +39,7 @@ public class BinarySearchTreeWithDups<T extends Comparable<? super T>> extends B
 					current = current.getLeftChild();
 				} else {
 					current.setLeftChild(new BinaryNode(newEntry));
-					found = true;
+					add = true;
 				}
 			} else {
 				// Assertion: comparison > 0
@@ -47,7 +47,7 @@ public class BinarySearchTreeWithDups<T extends Comparable<? super T>> extends B
 					current = current.getRightChild();
 				} else {
 					current.setRightChild((new BinaryNode(newEntry)));
-					found = true;
+					add = true;
 				}
 			}
 		}
