@@ -26,28 +26,55 @@ public class BinarySearchTreeWithDups<T extends Comparable<? super T>> extends B
 	// THIS METHOD CANNOT BE RECURSIVE.
 	private T addEntryHelperNonRecursive(T newEntry) {
 		// Assertion: rootNode != null
-		BinaryNode<T> current = getRootNode();
 		T result = null;
-		boolean add = false;
 
-		while (!add) {
+		// Iterative version:
+//		BinaryNode<T> current = getRootNode();
+//		boolean add = false;
+//
+//		while (!add) {
+//			result = current.getData();
+//			int comparison = newEntry.compareTo(result);
+//
+//			if (comparison <= 0) {
+//				if (current.hasLeftChild()) {
+//					current = current.getLeftChild();
+//				} else {
+//					current.setLeftChild(new BinaryNode(newEntry));
+//					add = true;
+//				}
+//			} else {
+//				// Assertion: comparison > 0
+//				if (current.hasRightChild()) {
+//					current = current.getRightChild();
+//				} else {
+//					current.setRightChild((new BinaryNode(newEntry)));
+//					add = true;
+//				}
+//			}
+//		}
+
+		// Stack version:
+		Stack<BinaryNode> stack = new Stack<>();
+		stack.push(getRootNode());
+
+		while (!stack.isEmpty()) {
+			BinaryNode<T> current = stack.pop();
 			result = current.getData();
 			int comparison = newEntry.compareTo(result);
 
 			if (comparison <= 0) {
 				if (current.hasLeftChild()) {
-					current = current.getLeftChild();
+					stack.push(current.getLeftChild());
 				} else {
-					current.setLeftChild(new BinaryNode(newEntry));
-					add = true;
+					current.setLeftChild(new BinaryNode<>(newEntry));
 				}
 			} else {
 				// Assertion: comparison > 0
 				if (current.hasRightChild()) {
-					current = current.getRightChild();
+					stack.push(current.getRightChild());
 				} else {
-					current.setRightChild((new BinaryNode(newEntry)));
-					add = true;
+					current.setRightChild(new BinaryNode<>(newEntry));
 				}
 			}
 		}
