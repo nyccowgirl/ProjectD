@@ -28,7 +28,7 @@ public class BinarySearchTreeWithDups<T extends Comparable<? super T>> extends B
 		// Assertion: rootNode != null
 		T result = null;
 
-		// Iterative version:
+		// Depth-first traversal version:
 //		BinaryNode<T> current = getRootNode();
 //		boolean add = false;
 //
