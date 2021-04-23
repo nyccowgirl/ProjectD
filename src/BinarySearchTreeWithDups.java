@@ -29,55 +29,54 @@ public class BinarySearchTreeWithDups<T extends Comparable<? super T>> extends B
 		T result = null;
 
 		// Depth-first traversal version:
-//		BinaryNode<T> current = getRootNode();
-//		boolean add = false;
-//
-//		while (!add) {
-//			result = current.getData();
-//			int comparison = newEntry.compareTo(result);
-//
-//			if (comparison <= 0) {
-//				if (current.hasLeftChild()) {
-//					current = current.getLeftChild();
-//				} else {
-//					current.setLeftChild(new BinaryNode(newEntry));
-//					add = true;
-//				}
-//			} else {
-//				// Assertion: comparison > 0
-//				if (current.hasRightChild()) {
-//					current = current.getRightChild();
-//				} else {
-//					current.setRightChild((new BinaryNode(newEntry)));
-//					add = true;
-//				}
-//			}
-//		}
+		BinaryNode<T> currentNode = getRootNode();
 
-		// Stack version:
-		Stack<BinaryNode> stack = new Stack<>();
-		stack.push(getRootNode());
-
-		while (!stack.isEmpty()) {
-			BinaryNode<T> current = stack.pop();
-			result = current.getData();
+		while (currentNode != null) {
+			result = currentNode.getData();
 			int comparison = newEntry.compareTo(result);
 
 			if (comparison <= 0) {
-				if (current.hasLeftChild()) {
-					stack.push(current.getLeftChild());
+				if (currentNode.hasLeftChild()) {
+					currentNode = currentNode.getLeftChild();
 				} else {
-					current.setLeftChild(new BinaryNode<>(newEntry));
+					currentNode.setLeftChild(new BinaryNode(newEntry));
+					currentNode = null;
 				}
 			} else {
 				// Assertion: comparison > 0
-				if (current.hasRightChild()) {
-					stack.push(current.getRightChild());
+				if (currentNode.hasRightChild()) {
+					currentNode = currentNode.getRightChild();
 				} else {
-					current.setRightChild(new BinaryNode<>(newEntry));
+					currentNode.setRightChild((new BinaryNode(newEntry)));
+					currentNode = null;
 				}
 			}
 		}
+
+		// Stack version:
+//		Stack<BinaryNode> stack = new Stack<>();
+//		stack.push(getRootNode());
+//
+//		while (!stack.isEmpty()) {
+//			BinaryNode<T> currentNode = stack.pop();
+//			result = currentNode.getData();
+//			int comparison = newEntry.compareTo(result);
+//
+//			if (comparison <= 0) {
+//				if (currentNode.hasLeftChild()) {
+//					stack.push(currentNode.getLeftChild());
+//				} else {
+//					currentNode.setLeftChild(new BinaryNode<>(newEntry));
+//				}
+//			} else {
+//				// Assertion: comparison > 0
+//				if (currentNode.hasRightChild()) {
+//					stack.push(currentNode.getRightChild());
+//				} else {
+//					currentNode.setRightChild(new BinaryNode<>(newEntry));
+//				}
+//			}
+//		}
 		
 		return result;
 	}
@@ -86,14 +85,54 @@ public class BinarySearchTreeWithDups<T extends Comparable<? super T>> extends B
 	// THIS METHOD CANNOT BE RECURSIVE.
 	// Make sure to take advantage of the sorted nature of the BST!
 	public int countEntriesNonRecursive(T target) {
-		// YOUR CODE HERE! 
-		
-		// this initial code is meant as a suggestion to get your started- use it or delete it!
 		int count = 0;
+
+		// Depth-first traversal version:
 		BinaryNode<T> currentNode = getRootNode();
 
-		// consider a loop!
-	
+		while (currentNode != null) {
+			if (target.equals(currentNode.getData())) {
+				count++;
+			}
+
+			int comparison = target.compareTo(currentNode.getData());
+
+			if (comparison <= 0) {
+				if (currentNode.hasLeftChild()) {
+					currentNode = currentNode.getLeftChild();
+				} else {
+					currentNode = null;
+				}
+			} else {
+				// Assertion: comparison > 0
+				if (currentNode.hasRightChild()) {
+					currentNode = currentNode.getRightChild();
+				} else {
+					currentNode = null;
+				}
+			}
+		}
+
+		// Stack version:
+//		Stack<BinaryNode> stack = new Stack<>();
+//		stack.push(getRootNode());
+//
+//		while (!stack.isEmpty()) {
+//			BinaryNode<T> current = stack.pop();
+//
+//			if (target.equals(current.getData())) {
+//				count++;
+//			}
+//
+//			if (current.hasLeftChild()) {
+//				stack.push(current.getLeftChild());
+//			}
+//
+//			if (current.hasRightChild()) {
+//				stack.push(current.getRightChild());
+//			}
+//		}
+
 		return count; 
 	}
 	
