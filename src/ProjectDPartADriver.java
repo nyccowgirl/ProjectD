@@ -54,14 +54,14 @@ public class ProjectDPartADriver {
 		// parameter 2: whether to test with the iterative or recursive method
 		// parameter 3: the target to count values greater than
 		// parameter 4: the expected count
-//		testGreaterCount(dupTree, GreaterType.ITERATIVE, 0, 15);
-//		testGreaterCount(dupTree, GreaterType.ITERATIVE, 1, 14);
-//		testGreaterCount(dupTree, GreaterType.ITERATIVE, 5, 10);
-//		testGreaterCount(dupTree, GreaterType.ITERATIVE, 6, 6);
-//		testGreaterCount(dupTree, GreaterType.ITERATIVE, 8, 3);
-//		testGreaterCount(dupTree, GreaterType.ITERATIVE, 10, 1);
-//		testGreaterCount(dupTree, GreaterType.ITERATIVE, 11, 0);
-//		testGreaterCount(dupTree, GreaterType.ITERATIVE, 12, 0);
+		testGreaterCount(dupTree, GreaterType.ITERATIVE, 0, 15);
+		testGreaterCount(dupTree, GreaterType.ITERATIVE, 1, 14);
+		testGreaterCount(dupTree, GreaterType.ITERATIVE, 5, 10);
+		testGreaterCount(dupTree, GreaterType.ITERATIVE, 6, 6);
+		testGreaterCount(dupTree, GreaterType.ITERATIVE, 8, 3);
+		testGreaterCount(dupTree, GreaterType.ITERATIVE, 10, 1);
+		testGreaterCount(dupTree, GreaterType.ITERATIVE, 11, 0);
+		testGreaterCount(dupTree, GreaterType.ITERATIVE, 12, 0);
 
 
 		System.out.println("\n******************TESTING COUNT GREATER RECURSIVE******************");

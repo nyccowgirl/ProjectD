@@ -54,24 +54,24 @@ public class BinarySearchTreeWithDups<T extends Comparable<? super T>> extends B
 //		}
 
 		// Stack version:
-		Stack<BinaryNode> stack = new Stack<>();
-		stack.push(getRootNode());
+		Stack<BinaryNode> nodeStack = new Stack<>();
+		nodeStack.push(getRootNode());
 
-		while (!stack.isEmpty()) {
-			BinaryNode<T> currentNode = stack.pop();
+		while (!nodeStack.isEmpty()) {
+			BinaryNode<T> currentNode = nodeStack.pop();
 			result = currentNode.getData();
 			int comparison = newEntry.compareTo(result);
 
 			if (comparison <= 0) {
 				if (currentNode.hasLeftChild()) {
-					stack.push(currentNode.getLeftChild());
+					nodeStack.push(currentNode.getLeftChild());
 				} else {
 					currentNode.setLeftChild(new BinaryNode<>(newEntry));
 				}
 			} else {
 				// Assertion: comparison > 0
 				if (currentNode.hasRightChild()) {
-					stack.push(currentNode.getRightChild());
+					nodeStack.push(currentNode.getRightChild());
 				} else {
 					currentNode.setRightChild(new BinaryNode<>(newEntry));
 				}
@@ -114,29 +114,29 @@ public class BinarySearchTreeWithDups<T extends Comparable<? super T>> extends B
 //		}
 
 		// Stack version:
-		Stack<BinaryNode> stack = new Stack<>();
-		stack.push(getRootNode());
+		Stack<BinaryNode> nodeStack = new Stack<>();
+		nodeStack.push(getRootNode());
 
 		// O(n) - TO BE DELETED:
-//		while (!stack.isEmpty()) {
-//			BinaryNode<T> currentNode = stack.pop();
+//		while (!nodeStack.isEmpty()) {
+//			BinaryNode<T> currentNode = nodeStack.pop();
 //
 //			if (target.equals(currentNode.getData())) {
 //				count++;
 //			}
 //
 //			if (currentNode.hasLeftChild()) {
-//				stack.push(currentNode.getLeftChild());
+//				nodeStack.push(currentNode.getLeftChild());
 //			}
 //
 //			if (currentNode.hasRightChild()) {
-//				stack.push(currentNode.getRightChild());
+//				nodeStack.push(currentNode.getRightChild());
 //			}
 //		}
 
 		// O(log n):
-		while (!stack.isEmpty()) {
-			BinaryNode<T> currentNode = stack.pop();
+		while (!nodeStack.isEmpty()) {
+			BinaryNode<T> currentNode = nodeStack.pop();
 
 			if (target.equals(currentNode.getData())) {
 				count++;
@@ -146,12 +146,12 @@ public class BinarySearchTreeWithDups<T extends Comparable<? super T>> extends B
 
 			if (comparison <= 0) {
 				if (currentNode.hasLeftChild()) {
-					stack.push(currentNode.getLeftChild());
+					nodeStack.push(currentNode.getLeftChild());
 				}
 			} else {
 				// Assertion: comparison > 0
 				if (currentNode.hasRightChild()) {
-					stack.push(currentNode.getRightChild());
+					nodeStack.push(currentNode.getRightChild());
 				}
 			}
 		}
@@ -181,11 +181,11 @@ public class BinarySearchTreeWithDups<T extends Comparable<? super T>> extends B
 				count++;
 
 				if (rootNode.hasLeftChild()) {
-					count = count + countGreaterRecursive(rootNode.getLeftChild(), target);
+					count += countGreaterRecursive(rootNode.getLeftChild(), target);
 				}
 
 				if (rootNode.hasRightChild()) {
-					count = count + countGreaterRecursive(rootNode.getRightChild(), target);
+					count += countGreaterRecursive(rootNode.getRightChild(), target);
 				}
 
 			} else {
@@ -203,15 +203,34 @@ public class BinarySearchTreeWithDups<T extends Comparable<? super T>> extends B
 	// Hint: use a stack!
 	// Make sure to take advantage of the sorted nature of the BST!
 	public int countGreaterIterative(T target) {
-		// YOUR CODE HERE! 
-		
-		// this initial code is meant as a suggestion to get your started- use it or delete it!
 		int count = 0;
-		BinaryNode<T> rootNode = getRootNode();
 		Stack<BinaryNode<T>> nodeStack = new Stack<BinaryNode<T>>();
-		nodeStack.push(rootNode);
+		nodeStack.push(getRootNode());
 
-		// consider a loop based on the stack!
+		while (!nodeStack.isEmpty()) {
+			BinaryNode<T> currentNode = nodeStack.pop();
+
+			int comparison = target.compareTo(currentNode.getData());
+
+			if (comparison < 0) {
+				// Count node as it is greater than target
+				count++;
+
+				if (currentNode.hasLeftChild()) {
+					nodeStack.push(currentNode.getLeftChild());
+				}
+
+				if (currentNode.hasRightChild()) {
+					nodeStack.push(currentNode.getRightChild());
+				}
+
+			} else {
+				// Assertion: comparison >= 0
+				if (currentNode.hasRightChild()) {
+					nodeStack.push(currentNode.getRightChild());
+				}
+			}
+		}
 
 		return count;
 	}
