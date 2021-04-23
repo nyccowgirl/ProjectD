@@ -88,9 +88,56 @@ public class BinarySearchTreeWithDups<T extends Comparable<? super T>> extends B
 		int count = 0;
 
 		// Depth-first traversal version:
-		BinaryNode<T> currentNode = getRootNode();
+//		BinaryNode<T> currentNode = getRootNode();
+//
+//		while (currentNode != null) {
+//			if (target.equals(currentNode.getData())) {
+//				count++;
+//			}
+//
+//			int comparison = target.compareTo(currentNode.getData());
+//
+//			if (comparison <= 0) {
+//				if (currentNode.hasLeftChild()) {
+//					currentNode = currentNode.getLeftChild();
+//				} else {
+//					currentNode = null;
+//				}
+//			} else {
+//				// Assertion: comparison > 0
+//				if (currentNode.hasRightChild()) {
+//					currentNode = currentNode.getRightChild();
+//				} else {
+//					currentNode = null;
+//				}
+//			}
+//		}
 
-		while (currentNode != null) {
+		// Stack version:
+		Stack<BinaryNode> stack = new Stack<>();
+		stack.push(getRootNode());
+
+		// O(n):
+//		while (!stack.isEmpty()) {
+//			BinaryNode<T> currentNode = stack.pop();
+//
+//			if (target.equals(currentNode.getData())) {
+//				count++;
+//			}
+//
+//			if (currentNode.hasLeftChild()) {
+//				stack.push(currentNode.getLeftChild());
+//			}
+//
+//			if (currentNode.hasRightChild()) {
+//				stack.push(currentNode.getRightChild());
+//			}
+//		}
+
+		// O(log n):
+		while (!stack.isEmpty()) {
+			BinaryNode<T> currentNode = stack.pop();
+
 			if (target.equals(currentNode.getData())) {
 				count++;
 			}
@@ -99,39 +146,15 @@ public class BinarySearchTreeWithDups<T extends Comparable<? super T>> extends B
 
 			if (comparison <= 0) {
 				if (currentNode.hasLeftChild()) {
-					currentNode = currentNode.getLeftChild();
-				} else {
-					currentNode = null;
+					stack.push(currentNode.getLeftChild());
 				}
 			} else {
 				// Assertion: comparison > 0
 				if (currentNode.hasRightChild()) {
-					currentNode = currentNode.getRightChild();
-				} else {
-					currentNode = null;
+					stack.push(currentNode.getRightChild());
 				}
 			}
 		}
-
-		// Stack version:
-//		Stack<BinaryNode> stack = new Stack<>();
-//		stack.push(getRootNode());
-//
-//		while (!stack.isEmpty()) {
-//			BinaryNode<T> current = stack.pop();
-//
-//			if (target.equals(current.getData())) {
-//				count++;
-//			}
-//
-//			if (current.hasLeftChild()) {
-//				stack.push(current.getLeftChild());
-//			}
-//
-//			if (current.hasRightChild()) {
-//				stack.push(current.getRightChild());
-//			}
-//		}
 
 		return count; 
 	}
