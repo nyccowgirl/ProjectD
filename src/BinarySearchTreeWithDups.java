@@ -181,10 +181,10 @@ public class BinarySearchTreeWithDups<T extends Comparable<? super T>> extends B
 				count++;
 
 				if (rootNode.hasLeftChild()) {
-					// Traverse through both left and right since target is < rootNode
 					count = count + countGreaterRecursive(rootNode.getLeftChild(), target);
-					count = count + countGreaterRecursive(rootNode.getRightChild(), target);
-				} else if (rootNode.hasRightChild()) {
+				}
+
+				if (rootNode.hasRightChild()) {
 					count = count + countGreaterRecursive(rootNode.getRightChild(), target);
 				}
 
