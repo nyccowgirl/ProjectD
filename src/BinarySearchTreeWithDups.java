@@ -1,5 +1,6 @@
 import java.util.*;
 
+
 public class BinarySearchTreeWithDups<T extends Comparable<? super T>> extends BinarySearchTree<T>
 		implements SearchTreeInterface<T>, java.io.Serializable {
 
@@ -86,6 +87,7 @@ public class BinarySearchTreeWithDups<T extends Comparable<? super T>> extends B
 	// Make sure to take advantage of the sorted nature of the BST!
 	public int countEntriesNonRecursive(T target) {
 		int count = 0;
+		int iterations = 0;											// To Be Deleted
 
 		// Depth-first traversal version:
 //		BinaryNode<T> currentNode = getRootNode();
@@ -132,6 +134,8 @@ public class BinarySearchTreeWithDups<T extends Comparable<? super T>> extends B
 //			if (currentNode.hasRightChild()) {
 //				nodeStack.push(currentNode.getRightChild());
 //			}
+//
+//			iterations++;
 //		}
 
 		// O(log n):
@@ -154,20 +158,31 @@ public class BinarySearchTreeWithDups<T extends Comparable<? super T>> extends B
 					nodeStack.push(currentNode.getRightChild());
 				}
 			}
+			iterations++;										// To Be Deleted
 		}
 
+		System.out.println("iterations = " + iterations);		// To Be Deleted
 		return count; 
 	}
-	
+
+
+	// To test optimization - To Be Deleted:
+	private int recursions = 0;
 	
 	// THIS METHOD MUST BE RECURSIVE! 
 	// You are allowed to create a private helper.
 	// Make sure to take advantage of the sorted nature of the BST!
 	public int countGreaterRecursive(T target) {
 		BinaryNode<T> rootNode = getRootNode();
+		recursions = 0;											// To Be Deleted
 
-		return countGreaterRecursive(rootNode, target);
+		int count = countGreaterRecursive(rootNode, target);
+		System.out.println("recursions = " + recursions);
+		return count;
+
+//		return countGreaterRecursive(rootNode, target);
 	}
+
 
 	// Helper method for countGreaterRecursive(T target)
 	private int countGreaterRecursive(BinaryNode<T> rootNode, T target) {
@@ -194,7 +209,9 @@ public class BinarySearchTreeWithDups<T extends Comparable<? super T>> extends B
 					count = countGreaterRecursive(rootNode.getRightChild(), target);
 				}
 			}
+			recursions++;									// To Be Deleted
 		}
+
 		return count;
 	}
 		
@@ -204,6 +221,7 @@ public class BinarySearchTreeWithDups<T extends Comparable<? super T>> extends B
 	// Make sure to take advantage of the sorted nature of the BST!
 	public int countGreaterIterative(T target) {
 		int count = 0;
+		int iterations = 0;						// To Be Deleted
 		Stack<BinaryNode<T>> nodeStack = new Stack<BinaryNode<T>>();
 		nodeStack.push(getRootNode());
 
@@ -230,8 +248,11 @@ public class BinarySearchTreeWithDups<T extends Comparable<? super T>> extends B
 					nodeStack.push(currentNode.getRightChild());
 				}
 			}
+
+			iterations++;
 		}
 
+		System.out.println("iterations = " + iterations);		// To Be Deleted
 		return count;
 	}
 		
@@ -241,8 +262,29 @@ public class BinarySearchTreeWithDups<T extends Comparable<? super T>> extends B
 	// The method can be iterative or recursive.
 	// If you make the method recursive, you might need to comment out the call to the method in Part B.
 	public int countUniqueValues() {
-		// YOUR EXTRA CREDIT CODE HERE! 
-		return 0; // placeholder: replace with your own code
+		int unique = 0;
+		Stack<BinaryNode> nodeStack = new Stack<>();
+		HashMap<T, Integer> seen = new HashMap<>();
+		nodeStack.push(getRootNode());
+
+		while (!nodeStack.isEmpty()) {							// O(n) to go through each node to add to nodeStack
+			BinaryNode<T> currentNode = nodeStack.pop();
+
+			if (seen.get(currentNode.getData()) == null) {		// O(1)
+				seen.put(currentNode.getData(), 1);				// put new elements in hashmap (value default to 1)
+				unique++;
+			}
+
+			if (currentNode.hasLeftChild()) {
+				nodeStack.push(currentNode.getLeftChild());
+			}
+
+			if (currentNode.hasRightChild()) {
+				nodeStack.push(currentNode.getRightChild());
+			}
+		}
+
+		return unique;
 	}
 		
 	
