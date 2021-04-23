@@ -166,15 +166,35 @@ public class BinarySearchTreeWithDups<T extends Comparable<? super T>> extends B
 	public int countGreaterRecursive(T target) {
 		BinaryNode<T> rootNode = getRootNode();
 
-		return (rootNode == null ? 0 : countGreaterRecursive(rootNode, target));
+		return countGreaterRecursive(rootNode, target);
 	}
 
 	// Helper method for countGreaterRecursive(T target)
 	private int countGreaterRecursive(BinaryNode<T> rootNode, T target) {
 		int count = 0;
 
-		// YOUR CODE HERE!
+		if (rootNode != null) {
+			int comparison = target.compareTo(rootNode.getData());
 
+			if (comparison < 0) {
+				// Count node as it is greater than target
+				count++;
+
+				if (rootNode.hasLeftChild()) {
+					// Traverse through both left and right since target is < rootNode
+					count = count + countGreaterRecursive(rootNode.getLeftChild(), target);
+					count = count + countGreaterRecursive(rootNode.getRightChild(), target);
+				} else if (rootNode.hasRightChild()) {
+					count = count + countGreaterRecursive(rootNode.getRightChild(), target);
+				}
+
+			} else {
+				// Assertion: comparison >= 0
+				if (rootNode.hasRightChild()) {
+					count = countGreaterRecursive(rootNode.getRightChild(), target);
+				}
+			}
+		}
 		return count;
 	}
 		

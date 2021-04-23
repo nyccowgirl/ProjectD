@@ -54,14 +54,14 @@ public class ProjectDPartADriver {
 		// parameter 2: whether to test with the iterative or recursive method
 		// parameter 3: the target to count values greater than
 		// parameter 4: the expected count
-		testGreaterCount(dupTree, GreaterType.ITERATIVE, 0, 15);
-		testGreaterCount(dupTree, GreaterType.ITERATIVE, 1, 14);
-		testGreaterCount(dupTree, GreaterType.ITERATIVE, 5, 10);
-		testGreaterCount(dupTree, GreaterType.ITERATIVE, 6, 6);
-		testGreaterCount(dupTree, GreaterType.ITERATIVE, 8, 3);
-		testGreaterCount(dupTree, GreaterType.ITERATIVE, 10, 1);
-		testGreaterCount(dupTree, GreaterType.ITERATIVE, 11, 0);
-		testGreaterCount(dupTree, GreaterType.ITERATIVE, 12, 0);
+//		testGreaterCount(dupTree, GreaterType.ITERATIVE, 0, 15);
+//		testGreaterCount(dupTree, GreaterType.ITERATIVE, 1, 14);
+//		testGreaterCount(dupTree, GreaterType.ITERATIVE, 5, 10);
+//		testGreaterCount(dupTree, GreaterType.ITERATIVE, 6, 6);
+//		testGreaterCount(dupTree, GreaterType.ITERATIVE, 8, 3);
+//		testGreaterCount(dupTree, GreaterType.ITERATIVE, 10, 1);
+//		testGreaterCount(dupTree, GreaterType.ITERATIVE, 11, 0);
+//		testGreaterCount(dupTree, GreaterType.ITERATIVE, 12, 0);
 
 
 		System.out.println("\n******************TESTING COUNT GREATER RECURSIVE******************");
@@ -75,16 +75,16 @@ public class ProjectDPartADriver {
 		testGreaterCount(dupTree, GreaterType.RECURSIVE, 12, 0);
 
 
-		System.out.println("\n******************TESTING EXTRA CREDIT COUNT UNIQUE VALUES******************");
-		// parameter 1: the tree
-		// parameter 2: the expected count of unique values
-		testCountUnique(dupTree, 10);
-		testCountUnique(nonDupTree, 8);
-
-
-		System.out.println("\n******************EVALUATING METHOD EFFICIENCY******************");
-		// parameter 1: whether to print the initial description; it's long, so once you've read it, you might want to hide it!
-		methodEfficiencyEvaluator(true);
+//		System.out.println("\n******************TESTING EXTRA CREDIT COUNT UNIQUE VALUES******************");
+//		// parameter 1: the tree
+//		// parameter 2: the expected count of unique values
+//		testCountUnique(dupTree, 10);
+//		testCountUnique(nonDupTree, 8);
+//
+//
+//		System.out.println("\n******************EVALUATING METHOD EFFICIENCY******************");
+//		// parameter 1: whether to print the initial description; it's long, so once you've read it, you might want to hide it!
+//		methodEfficiencyEvaluator(true);
 	}
 	
 	/*
