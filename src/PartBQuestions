@@ -1,0 +1,35 @@
+Part B:
+
+1.  Compare the trees in Test A and Test B.
+    The Test A tree is built from a sorted list, ascending.
+    The Test B tree is built form a sorted list, descending.
+    Which tree was built faster and had faster processing? Why do you think that is?
+    Hint: Try drawing a small tree to see what is going on. Perhaps a tree built from 1, 1, 2, 2, 3, 4, 4, 5 and
+    from 5, 4, 4, 3, 2, 2, 1.
+
+    => A tree built from sorted list, ascending was quicker to build since duplicates would be placed through the left
+    child of a node, while non-duplicates are added to the right, making the depth (and iterations) less than in a
+    descending order, where the tree would branch down every left child of a node, so n = h.
+
+2.  Compare the trees in Test A and Test C.
+    The Test A tree is built from a sorted list, ascending.
+    The Test C tree is built from a shuffled list.
+    Which tree was built faster? What does the "tree info" tell you about these two trees?
+
+    => A tree built from shuffled list was significantly quicker. It would be more balanced as the root is from 2015
+    rather than 2003. For the tree from a sorted list, left height is 3 while right height is 4787. In the tree from
+    the shuffled list, left height was 156 with right height as 134.
+
+3.  Compare the tree in Test C to the shuffled list in Test C.
+    The Test C tree is built from the shuffled list.
+    Which processing was faster: the tree or the list?
+    How would you describe the big-o of the processing of these two structures?
+
+    => Building the tree is faster than the list. As it is more balanced, it is similar to a binary sort with O(log n)
+    to add a node. Shuffle is O(n) and elements would be swapped (and depending on how it is implemented, such as
+    Collections.shuffle() could consists of another array to track and copied to original list).
+
+4.  What is the main characteristic of a binary search tree that affects its efficiency?
+
+    => A binary search tree is similar to a binary sort so a whole branch (left or right child) would be eliminated
+    for each iteration of a condition.
