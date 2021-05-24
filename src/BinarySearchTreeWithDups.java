@@ -87,7 +87,6 @@ public class BinarySearchTreeWithDups<T extends Comparable<? super T>> extends B
 	// Make sure to take advantage of the sorted nature of the BST!
 	public int countEntriesNonRecursive(T target) {
 		int count = 0;
-		int iterations = 0;											// To Be Deleted
 
 		// Depth-first traversal version:
 //		BinaryNode<T> currentNode = getRootNode();
@@ -119,25 +118,6 @@ public class BinarySearchTreeWithDups<T extends Comparable<? super T>> extends B
 		Stack<BinaryNode> nodeStack = new Stack<>();
 		nodeStack.push(getRootNode());
 
-		// O(n) - TO BE DELETED:
-//		while (!nodeStack.isEmpty()) {
-//			BinaryNode<T> currentNode = nodeStack.pop();
-//
-//			if (target.equals(currentNode.getData())) {
-//				count++;
-//			}
-//
-//			if (currentNode.hasLeftChild()) {
-//				nodeStack.push(currentNode.getLeftChild());
-//			}
-//
-//			if (currentNode.hasRightChild()) {
-//				nodeStack.push(currentNode.getRightChild());
-//			}
-//
-//			iterations++;
-//		}
-
 		// O(log n):
 		while (!nodeStack.isEmpty()) {
 			BinaryNode<T> currentNode = nodeStack.pop();
@@ -158,29 +138,19 @@ public class BinarySearchTreeWithDups<T extends Comparable<? super T>> extends B
 					nodeStack.push(currentNode.getRightChild());
 				}
 			}
-			iterations++;										// To Be Deleted
 		}
 
-		System.out.println("iterations = " + iterations);		// To Be Deleted
-		return count; 
+		return count;
 	}
 
-
-	// To test optimization - To Be Deleted:
-	private int recursions = 0;
 	
 	// THIS METHOD MUST BE RECURSIVE! 
 	// You are allowed to create a private helper.
 	// Make sure to take advantage of the sorted nature of the BST!
 	public int countGreaterRecursive(T target) {
 		BinaryNode<T> rootNode = getRootNode();
-		recursions = 0;											// To Be Deleted
 
-		int count = countGreaterRecursive(rootNode, target);
-		System.out.println("recursions = " + recursions);
-		return count;
-
-//		return countGreaterRecursive(rootNode, target);
+		return countGreaterRecursive(rootNode, target);
 	}
 
 
@@ -209,7 +179,6 @@ public class BinarySearchTreeWithDups<T extends Comparable<? super T>> extends B
 					count = countGreaterRecursive(rootNode.getRightChild(), target);
 				}
 			}
-			recursions++;									// To Be Deleted
 		}
 
 		return count;
@@ -221,7 +190,6 @@ public class BinarySearchTreeWithDups<T extends Comparable<? super T>> extends B
 	// Make sure to take advantage of the sorted nature of the BST!
 	public int countGreaterIterative(T target) {
 		int count = 0;
-		int iterations = 0;						// To Be Deleted
 		Stack<BinaryNode<T>> nodeStack = new Stack<BinaryNode<T>>();
 		nodeStack.push(getRootNode());
 
@@ -248,11 +216,8 @@ public class BinarySearchTreeWithDups<T extends Comparable<? super T>> extends B
 					nodeStack.push(currentNode.getRightChild());
 				}
 			}
-
-			iterations++;
 		}
 
-		System.out.println("iterations = " + iterations);		// To Be Deleted
 		return count;
 	}
 		
@@ -309,6 +274,5 @@ public class BinarySearchTreeWithDups<T extends Comparable<? super T>> extends B
 			return rootNode.getRightChild().getHeight();
 		}
 	}
-	
 
 }

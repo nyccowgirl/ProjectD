@@ -82,85 +82,85 @@ public class ProjectDPartADriver {
 		testCountUnique(nonDupTree, 8);
 
 
-		System.out.println("\n******************EVALUATING METHOD EFFICIENCY******************");
-		// parameter 1: whether to print the initial description; it's long, so once you've read it, you might want to hide it!
-		methodEfficiencyEvaluator(true);
-	}
-	
-	/*
-	 * The methods below are designed to help support the tests cases run from main. You don't
-	 * need to use, modify, or understand these methods. You can safely ignore them. :) 
-	 */
-	
-	private static void methodEfficiencyEvaluator(boolean printDescription) {
-		if(printDescription) {
-			System.out.println("This method is designed to help you figure out if you are fully taking advantage of the sorted nature of a BST.");
-			System.out.println("Essentially what it does is create very lopsided trees and then invokes methods with targets that are \"near the root\" or \"deep in the tree.\"");
-			System.out.println("If you are fully taking advantage of the sorted nature of the tree, then the method should be faster when the target is near the root.");
-			System.out.println("\n*****IMPORTANT*****: In order to use these tests, you must add code to the method you are evaluating.");
-			System.out.println("The code should count how many iterations the method took- loops or recursion.");
-			System.out.println("For the iterative methods, use a local variable inside the method. Initialize to 0. Example: int iterations = 0");
-			System.out.println("  Then, inside the loop, increment for each pass of the loop. Example: while(...) { iterations++; ... }");
-			System.out.println("  At the end of the method, before the return, print the total iteration count.");
-			System.out.println("  Example: System.out.println(\"iterations=\" + iterations);");
-			System.out.println("For recursion, declare a static variable outside of the method and initialize to 0. Example: private static recursions = 0;");
-			System.out.println("  Reassign the variable 0 at the beginning of the *recursive* method. Example: recursions = 0;");
-			System.out.println("  Inside the *helper* method, increment the variable. Example: recursions++;");
-			System.out.println("  At the end of the *recursive* method, before the return, print the total recursion count.");
-			System.out.println("  Note that you will need to assign your helper method call to a local variable instead of just returning.");
-			System.out.println("  Example: int count = recursiveHelper(...); System.out.println(\"recursions=\" + recursions); return count;");
-		}
-		System.out.println("\nEach test below will then show two counts.");
-		System.out.println("If the two counts are very different: you might be okay for that method.");
-		System.out.println("If the two iteration counts are equal or close to each other... ALERT!!! You might not be fully taking advantage of the sorted nature of the BST for the  method specified.");
-		System.out.println("\nDon't forget to remove the test code before submission! :)");
-		
-		final int SMALL_NUM = -1;
-		final int SIZE = 5000;
-		final int LARGE_NUM = SIZE*2;
-
-		BinarySearchTreeWithDups<Integer> lotsOfDups; 
-
-		System.out.println("\nTesting countEntriesNonRecursive Test A...");
-		lotsOfDups = new BinarySearchTreeWithDups<Integer>();
-		for(int i=0, num=0; i<SIZE; i++) {
-			lotsOfDups.add(num);
-			if(i%5==0) {
-				num++;
-			}
-		}
-		lotsOfDups.countEntriesNonRecursive(SMALL_NUM);
-		
-		lotsOfDups = new BinarySearchTreeWithDups<Integer>();
-		for(int i=0; i<SIZE; i++) {
-			lotsOfDups.add(LARGE_NUM);
-		}
-		lotsOfDups.countEntriesNonRecursive(SMALL_NUM);
-		
-		System.out.println("\nTesting countEntriesNonRecursive Test B...");
-		lotsOfDups = new BinarySearchTreeWithDups<Integer>();
-		for(int i=0; i<SIZE; i++) {
-			lotsOfDups.add(SMALL_NUM);
-		}
-		lotsOfDups.countEntriesNonRecursive(SMALL_NUM);
-		lotsOfDups.countEntriesNonRecursive(LARGE_NUM);
-
-
-		System.out.println("\nTesting countGreaterWithStack...");
-		lotsOfDups = new BinarySearchTreeWithDups<Integer>();
-		for(int i=0; i<SIZE; i++) {
-			lotsOfDups.add(SMALL_NUM);
-		}
-		lotsOfDups.countGreaterIterative(LARGE_NUM);
-		lotsOfDups.countGreaterIterative(SMALL_NUM-1);
-
-		System.out.println("\nTesting countGreaterRecursive...");
-		lotsOfDups = new BinarySearchTreeWithDups<Integer>();
-		for(int i=0; i<SIZE; i++) {
-			lotsOfDups.add(SMALL_NUM);
-		}
-		lotsOfDups.countGreaterRecursive(LARGE_NUM);
-		lotsOfDups.countGreaterRecursive(SMALL_NUM-1);
+//		System.out.println("\n******************EVALUATING METHOD EFFICIENCY******************");
+//		// parameter 1: whether to print the initial description; it's long, so once you've read it, you might want to hide it!
+//		methodEfficiencyEvaluator(true);
+//	}
+//
+//	/*
+//	 * The methods below are designed to help support the tests cases run from main. You don't
+//	 * need to use, modify, or understand these methods. You can safely ignore them. :)
+//	 */
+//
+//	private static void methodEfficiencyEvaluator(boolean printDescription) {
+//		if(printDescription) {
+//			System.out.println("This method is designed to help you figure out if you are fully taking advantage of the sorted nature of a BST.");
+//			System.out.println("Essentially what it does is create very lopsided trees and then invokes methods with targets that are \"near the root\" or \"deep in the tree.\"");
+//			System.out.println("If you are fully taking advantage of the sorted nature of the tree, then the method should be faster when the target is near the root.");
+//			System.out.println("\n*****IMPORTANT*****: In order to use these tests, you must add code to the method you are evaluating.");
+//			System.out.println("The code should count how many iterations the method took- loops or recursion.");
+//			System.out.println("For the iterative methods, use a local variable inside the method. Initialize to 0. Example: int iterations = 0");
+//			System.out.println("  Then, inside the loop, increment for each pass of the loop. Example: while(...) { iterations++; ... }");
+//			System.out.println("  At the end of the method, before the return, print the total iteration count.");
+//			System.out.println("  Example: System.out.println(\"iterations=\" + iterations);");
+//			System.out.println("For recursion, declare a static variable outside of the method and initialize to 0. Example: private static recursions = 0;");
+//			System.out.println("  Reassign the variable 0 at the beginning of the *recursive* method. Example: recursions = 0;");
+//			System.out.println("  Inside the *helper* method, increment the variable. Example: recursions++;");
+//			System.out.println("  At the end of the *recursive* method, before the return, print the total recursion count.");
+//			System.out.println("  Note that you will need to assign your helper method call to a local variable instead of just returning.");
+//			System.out.println("  Example: int count = recursiveHelper(...); System.out.println(\"recursions=\" + recursions); return count;");
+//		}
+//		System.out.println("\nEach test below will then show two counts.");
+//		System.out.println("If the two counts are very different: you might be okay for that method.");
+//		System.out.println("If the two iteration counts are equal or close to each other... ALERT!!! You might not be fully taking advantage of the sorted nature of the BST for the  method specified.");
+//		System.out.println("\nDon't forget to remove the test code before submission! :)");
+//
+//		final int SMALL_NUM = -1;
+//		final int SIZE = 5000;
+//		final int LARGE_NUM = SIZE*2;
+//
+//		BinarySearchTreeWithDups<Integer> lotsOfDups;
+//
+//		System.out.println("\nTesting countEntriesNonRecursive Test A...");
+//		lotsOfDups = new BinarySearchTreeWithDups<Integer>();
+//		for(int i=0, num=0; i<SIZE; i++) {
+//			lotsOfDups.add(num);
+//			if(i%5==0) {
+//				num++;
+//			}
+//		}
+//		lotsOfDups.countEntriesNonRecursive(SMALL_NUM);
+//
+//		lotsOfDups = new BinarySearchTreeWithDups<Integer>();
+//		for(int i=0; i<SIZE; i++) {
+//			lotsOfDups.add(LARGE_NUM);
+//		}
+//		lotsOfDups.countEntriesNonRecursive(SMALL_NUM);
+//
+//		System.out.println("\nTesting countEntriesNonRecursive Test B...");
+//		lotsOfDups = new BinarySearchTreeWithDups<Integer>();
+//		for(int i=0; i<SIZE; i++) {
+//			lotsOfDups.add(SMALL_NUM);
+//		}
+//		lotsOfDups.countEntriesNonRecursive(SMALL_NUM);
+//		lotsOfDups.countEntriesNonRecursive(LARGE_NUM);
+//
+//
+//		System.out.println("\nTesting countGreaterWithStack...");
+//		lotsOfDups = new BinarySearchTreeWithDups<Integer>();
+//		for(int i=0; i<SIZE; i++) {
+//			lotsOfDups.add(SMALL_NUM);
+//		}
+//		lotsOfDups.countGreaterIterative(LARGE_NUM);
+//		lotsOfDups.countGreaterIterative(SMALL_NUM-1);
+//
+//		System.out.println("\nTesting countGreaterRecursive...");
+//		lotsOfDups = new BinarySearchTreeWithDups<Integer>();
+//		for(int i=0; i<SIZE; i++) {
+//			lotsOfDups.add(SMALL_NUM);
+//		}
+//		lotsOfDups.countGreaterRecursive(LARGE_NUM);
+//		lotsOfDups.countGreaterRecursive(SMALL_NUM-1);
 	}
 	private static enum TraverseType {
 		INORDER, PREORDER, POSTORDER;
